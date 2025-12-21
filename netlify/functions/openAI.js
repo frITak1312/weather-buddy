@@ -1,5 +1,5 @@
 const headers = {
-    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Origin": "https://try-weather-buddy.netlify.app",
     "Content-Type": "application/json",
 };
 const res = (code, body) => ({
