@@ -14,7 +14,7 @@ const arePreferencesValid = (settings) => {
 function App() {
     const {isModalOpen, openModal, closeModal} = useProfileModal();
     const settings = useStoreSettings((state) => state.settings);
-
+    
     const hasValidPreferences = arePreferencesValid(settings);
 
     return (

@@ -1,19 +1,16 @@
 import WeatherInfoCard from "./WeatherInfoCard.jsx";
 import AIRecommendation from "./AIRecommendation.jsx";
-import DefaultLocation from "./DefaultLocation.jsx";
 import SideBar from "./SideBar.jsx";
 import {useCurrentLocationWeather} from "../hooks/useWeatherFetch.jsx";
 import useStoreSettings from "../store/useStoreSettings.jsx";
 import {Spinner} from "./Spinner.jsx";
 import Slider from "./Slider.jsx";
+import DefaultLocation from "./DefaultLocation.jsx";
 
 export default function Dashboard() {
     const {weatherData, isLoading} = useCurrentLocationWeather();
 
     const location = useStoreSettings((state) => state.settings.location);
-    const defaultLocation = useStoreSettings(
-        (state) => state.settings.defaultLocation
-    );
 
     if (isLoading) {
         return (
@@ -30,11 +27,7 @@ export default function Dashboard() {
                 <Slider weatherData={weatherData.hourly}/>
                 <div className='grid grid-cols-3 w-full gap-5'>
                     <AIRecommendation weatherData={weatherData.hourly}/>
-                    {!defaultLocation || defaultLocation?.id === location?.id ? (
-                        ""
-                    ) : (
-                        <DefaultLocation defaultLocation={defaultLocation}/>
-                    )}
+                    <DefaultLocation/>
                 </div>
             </div>
             <SideBar weatherData={weatherData.daily}/>
